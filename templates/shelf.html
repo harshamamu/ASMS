@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shelf {{ shelf_name }}</title>
+</head>
+<body>
+    <h1>Server Inventory - Shelf {{ shelf_name }}</h1>
+    <table border="1">
+        <tr>
+            <th>Asset Number</th>
+            <th>Slot number</th>
+            <th>Date In</th>
+            <th>Date Out</th>
+        </tr>
+        {% for server in servers %}
+        <tr>
+            <td>{{ server[0] }}</td>
+            <td>{{ server[1] }}</td>
+            <td>{{ server[2] }}</td>
+            <td>{{ server[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Servers</title>
+</head>
+<body>
+    <h1>Add Servers</h1>
+    <form method="post" action="{{ url_for('add_servers') }}">
+        <label for="shelf_name">Shelf Name:</label>
+        <select name="shelf_name">
+            {% for shelf in shelves %}
+                <option value="{{ shelf[0] }}">{{ shelf[0] }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="asset_numbers">Asset Numbers (comma-separated):</label>
+        <input type="text" name="asset_numbers" required><br>
+        <button type="submit">Add Servers</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Shelf</title>
+</head>
+<body>
+    <h1>Manage Shelf: {{ shelf_name }}</h1>
+    <form method="POST" action="{{ url_for('remove_shelf', shelf_name=shelf_name) }}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Asset Number</th>
+                    <th>Slot number</th>
+                    <th>Date In</th>
+                    <th>Date Out</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for server in servers %}
+                    <tr>
+                        <td>{{ server[1] }}</td>
+                        <td>{{ server[2] }}</td>
+                        <td>{{ server[4] }}</td>
+                        <td>{{ server[5] }}</td>
+                        <td><input type="checkbox" name="servers[]" value="{{ server[0] }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button type="submit">Remove Selected</button>
+    </form>
+</body>
+</html>

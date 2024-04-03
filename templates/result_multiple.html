@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Result - Multiple</title>
+</head>
+<body>
+    <h2>Search Result - Multiple</h2>
+    <ul>
+        {% for asset_number, location in locations.items() %}
+            <li>Asset Number: {{ asset_number }} - Location: {{ location }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

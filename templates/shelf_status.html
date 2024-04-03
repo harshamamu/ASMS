@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shelf Status</title>
+</head>
+<body>
+  <h1>Shelf Status</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Shelf Name</th>
+        <th>Number of Servers</th>
+        <th>Capacity</th>
+        <th>Empty Slots</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for shelf in shelves %}
+        <tr>
+          <td>{{ shelf[0] }}</td>
+          <td>{{ shelf[1] }}</td>
+          <td>25</td>
+          <td>{{ 25 - shelf[1] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

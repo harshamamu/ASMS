@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remove Servers from Shelf</title>
+</head>
+<body>
+    <h1>Remove Servers from Shelf {{ shelf_name }}</h1>
+    <form action="{{ url_for('execute_remove') }}" method="post">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Asset Number</th>
+                    <th>Slot Number</th>
+                    <th>Date In</th>
+                    <th>Date Out</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for server in servers %}
+                    <tr>
+                        <td>{{ server[0] }}</td>
+                        <td>{{ server[1] }}</td>
+                        <td>{{ server[2] }}</td>
+                        <td>{{ server[3] }}</td>
+                        <td><input type="checkbox" name="servers_to_remove" value="{{ server[0] }}"></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="hidden" name="shelf_name" value="{{ shelf_name }}">
+        <button type="submit">Remove Selected Servers</button>
+    </form>
+</body>
+</html>

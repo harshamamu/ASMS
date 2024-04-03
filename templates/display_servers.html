@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server Inventory</title>
+</head>
+<body>
+    <h1>Display Servers</h1>
+    {% if display_option == 'by_shelf' %}
+        <h2>Display Servers by Shelf:</h2>
+        <ul>
+            {% for shelf in shelves %}
+                <li><a href="{{ url_for('shelf', shelf_name=shelf[0]) }}">Shelf {{ shelf[0] }}</a></li>
+            {% endfor %}
+        </ul>
+    {% elif display_option == 'all' %}
+        <h2>All Servers:</h2>
+        <a href="{{ url_for('export_to_excel') }}">Export to Excel</a> <!-- Add this line -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Asset Number</th>
+                    <th>Shelf Name</th>
+                    <th>Slot Number</th>
+                    <th>Date In</th>
+                    <th>Date Out</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for server in servers %}
+                    <tr>
+                        <td>{{ server[1] }}</td>
+                        <td>{{ server[2] }}</td>
+                        <td>{{ server[3] }}</td>
+                        <td>{{ server[4] }}</td>
+                        <td>{{ server[5] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</body>
+</html>
