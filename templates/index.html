@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automatic Server Management System</title>
+  <title>Server Central: Your Automated Management Hub</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -69,12 +69,25 @@
     .option-box h3 {
       margin-top: 0;
     }
+
+    #TotalCurrentCapacity {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px;
+      background-color: #333;  /* Changed to a lighter color for better visibility */
+      color: #fff;
+      font-weight: bold;
+      border-radius: 5px;
+      /* Added a higher z-index to ensure it's on top of other elements */
+      z-index: 1;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <header class="header">
-      <h1>Automatic Server Management System</h1>
+      <h1>Server Central: Your Automated Management Hub</h1>
     </header>
 
     <div class="options-container">
@@ -104,5 +117,23 @@
       </div>
     </div>
   </div>
+
+  <div id="TotalCurrentCapacity">Total Current Capacity: <span id="capacityValue">0</span></div>
+
+  <script>
+    // Get the number of servers in each shelf from the backend API
+    const serversByShelf = JSON.parse('{{ servers_by_shelf|tojson|safe }}');  // Parse the JSON data
+            
+    // Calculate the total capacity based on the number of servers in each shelf
+    let totalCapacity = 0;
+    for (const shelfName in serversByShelf) {
+      if (serversByShelf.hasOwnProperty(shelfName)) {
+        totalCapacity += serversByShelf[shelfName];
+      }
+    }
+
+    // Update the capacity value in the HTML
+    document.getElementById("capacityValue").innerText = totalCapacity;
+  </script>
 </body>
 </html>

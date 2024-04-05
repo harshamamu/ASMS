@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Remove Servers</title>
+  <title>Remove Servers</title>
 </head>
 <body>
-    <h1>Remove Servers</h1>
-    <form method="POST">
-        {{ form.csrf_token }}
-        {{ form.shelf_name.label }}<br>
-        {{ form.shelf_name(size=30) }}<br><br>
-        {{ form.submit() }}
-    </form>
+  <h1>Remove Servers</h1>
+  <form method="POST">
+    {{ form.csrf_token }}
+    {{ form.shelf_name.label }}<br>
+    {{ form.shelf_name(size=30) }}<br><br>
+    {{ form.submit() }}
+  </form>
+  <a href="{{ url_for('index') }}">Home</a>
 </body>
 </html>

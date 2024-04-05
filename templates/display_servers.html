@@ -1,42 +1,86 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Server Inventory</title>
+<html lang="en">  <head>
+  <title>Server Inventory</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px; /* Added some padding for better layout */
+    }
+    
+    h1, h2 {
+      margin-bottom: 15px;
+      text-align: center;  /* Center alignment for headings */
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    li {
+      margin-bottom: 10px;
+    }
+    
+    table {
+      border-collapse: collapse; /* Ensures table borders collapse properly */
+      width: 100%; /* Makes the table responsive */
+      margin: 0 auto;  /* Centers the table horizontally */
+    }
+    
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd; /* Light gray border for table cells */
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f2f2f2; /* Light gray background for table header */
+    }
+    
+    a {
+      color: #007bff; /* Blue color for links */
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #0056b3; /* Darker blue for link hover effect */
+    }
+  </style>
 </head>
 <body>
-    <h1>Display Servers</h1>
-    {% if display_option == 'by_shelf' %}
-        <h2>Display Servers by Shelf:</h2>
-        <ul>
-            {% for shelf in shelves %}
-                <li><a href="{{ url_for('shelf', shelf_name=shelf[0]) }}">Shelf {{ shelf[0] }}</a></li>
-            {% endfor %}
-        </ul>
-    {% elif display_option == 'all' %}
-        <h2>All Servers:</h2>
-        <a href="{{ url_for('export_to_excel') }}">Export to Excel</a> <!-- Add this line -->
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Asset Number</th>
-                    <th>Shelf Name</th>
-                    <th>Slot Number</th>
-                    <th>Date In</th>
-                    <th>Date Out</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for server in servers %}
-                    <tr>
-                        <td>{{ server[1] }}</td>
-                        <td>{{ server[2] }}</td>
-                        <td>{{ server[3] }}</td>
-                        <td>{{ server[4] }}</td>
-                        <td>{{ server[5] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+  <h1>Server Inventory</h1>
+  {% if display_option == 'by_shelf' %}
+    <h2>Display Servers by Shelf:</h2>
+    <ul>
+      {% for shelf in shelves %}
+        <li><a href="{{ url_for('shelf', shelf_name=shelf[0]) }}">Shelf {{ shelf[0] }}</a></li>
+      {% endfor %}
+    </ul>
+  {% elif display_option == 'all' %}
+    <h2>All Servers:</h2>
+    <a href="{{ url_for('export_to_excel') }}">Export to Excel</a>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Asset Number</th>
+          <th>Shelf Name</th>
+          <th>Slot Number</th>
+          <th>Date In</th>
+          <th>Date Out</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for server in servers %}
+          <tr>
+            <td>{{ server[1] }}</td>
+            <td>{{ server[2] }}</td>
+            <td>{{ server[3] }}</td>
+            <td>{{ server[4] }}</td>
+            <td>{{ server[5] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
 </body>
 </html>
